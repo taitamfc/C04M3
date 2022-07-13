@@ -26,10 +26,10 @@ Route::get('/hello' , function(){
 //add
 Route::get('/create' , function(){
     return view('crud.add');
-});
+})->name('tao-moi');
 
 //luu
-Route::post('/store' , function( Request $request  ){
+Route::post('/store-123' , function( Request $request  ){
     // dd($request->all());
     //email
     $email = $request->email;
@@ -38,17 +38,17 @@ Route::post('/store' , function( Request $request  ){
     // echo '<pre>';
     // print_r( $_REQUEST );
     // die();
-});
+})->name('luu-moi');
 
 //form chinh sua
 Route::get('/edit/{id?}' , function( $id = 0){
     return view('crud.edit');
-});
+})->name('chinh-sua');
 
 //cap nhat du lieu
 Route::put('/update', function(Request $request){
     dd($request->all());
-});
+})->name('cap-nhat');
 
 //form xoa
 Route::get('/form-delete/{id?}' , function( $id = 0){
@@ -58,4 +58,28 @@ Route::get('/form-delete/{id?}' , function( $id = 0){
 Route::delete('/destroy',function(Request $request){
     dd($request->all());
 });
+
+//admin
+//admin/categories
+//admin/users
+
+//admin/profile/edit
+//admin/profile/update
+
+Route::prefix('admin')->group( function(){
+    //admin/profile/edit
+    Route::prefix('profile')->group( function(){
+        Route::get('edit' , function(){
+            dd('edit');
+        });
+    } ); 
+
+    //admin/profile/update
+    Route::get('profile/update' , function(){
+        dd('update');
+    });
+
+    
+});
+
 
