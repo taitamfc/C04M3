@@ -8,23 +8,22 @@ class TaskController extends Controller
 {
     //lay tat ca du lieu
     public function index(){
-        echo __METHOD__;die();
+        return view('tasks.index');
     }
 
     //trang tao moi
     public function create(){
-        echo __METHOD__;die();
+        return view('tasks.create');
     }
 
     //trang chinh sua
     public function edit($id){
-        echo $id;
-        echo __METHOD__;die();
+        return view('tasks.edit');
     }
 
     //trang xem chi tiet
     public function show($id){
-        echo __METHOD__;die();
+        return view('tasks.show');
     }
 
     //luu du lieu moi
