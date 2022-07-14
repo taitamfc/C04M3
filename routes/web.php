@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use App\Http\Controllers\TaskController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -78,8 +79,30 @@ Route::prefix('admin')->group( function(){
     Route::get('profile/update' , function(){
         dd('update');
     });
+});
 
-    
+Route::prefix('tasks')->group( function(){
+    // trang danhs sach
+    Route::get('/' , [TaskController::class,'index'] )->name('tasks.index');
+
+    //trang them moi
+    Route::get('/create' , [TaskController::class,'create'] )->name('tasks.create');
+
+    //luu moi
+    Route::post('/store' , [TaskController::class,'store'] )->name('tasks.store');
+
+    //trang chinh sua
+    Route::get('/{id}/edit' , [TaskController::class,'edit'] )->name('tasks.edit');
+    //http://127.0.0.1:8000/tasks/1/edit
+
+    //xem chi tiet thong tin
+    Route::get('/{id}' , [TaskController::class,'show'] )->name('tasks.show');
+
+    //cap nhap
+    Route::put('/{id}' , [TaskController::class,'update'] )->name('tasks.update');
+
+    //delete
+    Route::delete('/{id}' , [TaskController::class,'destroy'] )->name('tasks.destroy');
 });
 
 
