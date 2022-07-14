@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\AdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -81,7 +83,19 @@ Route::prefix('admin')->group( function(){
     });
 });
 
-Route::prefix('tasks')->group( function(){
+Route::resource('photos',CustomerController::class);
+/*
+    photos
+        GET     => /             => index       => photos.index
+        GET     => /create       => create      => photos.create
+        POST    => /store        => store       => photos.store
+        GET     => /{id}/edit    => edit        => photos.edit
+        GET     => /{id}         => show        => photos.show
+        PUT     => /{id}         => update      => photos.update
+        DELETE  => /{id}         => destroy     => photos.destroy
+*/
+
+Route::group(['prefix' => 'tasks',  'middleware' => 'auth'], function(){
     // trang danhs sach
     Route::get('/' , [TaskController::class,'index'] )->name('tasks.index');
 
@@ -105,4 +119,17 @@ Route::prefix('tasks')->group( function(){
     Route::delete('/{id}' , [TaskController::class,'destroy'] )->name('tasks.destroy');
 });
 
+Route::get('/login' , function(){
+    echo '<h1>Login</h1>';
+})->name('login');
 
+
+Route::get('/khu-vuc-uong-bia/{age?}',function($age = 0){
+    echo '<h1>Uong Bia</h1>';
+})->middleware('check.age')->name('uong-bia');
+
+Route::get('/khu-vuc-nuoc-ngot/{age?}',function($age = 0){
+    echo '<h1>Uong Nuoc ngot</h1>';
+})->name('uong-nuoc-ngot');
+
+Route::get('admin',AdminController::class);
