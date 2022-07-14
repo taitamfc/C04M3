@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <div class="container">
+    <a href="{{ route('tasks.create') }}" class="btn btn-info"> Them moi </a>
     <table class="table table-dark">
         <tbody>
             <tr>
