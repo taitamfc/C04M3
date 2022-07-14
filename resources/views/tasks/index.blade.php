@@ -10,6 +10,7 @@
                 <td>1</td>
                 <td>Nguyen Van A</td>
                 <td>
+                    <a href="{{ route('tasks.destroy',['id' => 1]) }}" class="btn btn-primary">Show</a>
                     <form method="post" action="{{ route('tasks.destroy',['id' => 1]) }}">
                         @csrf
                         @method('DELETE')
@@ -21,6 +22,7 @@
                 <td>2</td>
                 <td>Nguyen Van B</td>
                 <td>
+                    <a href="{{ route('tasks.destroy',['id' => 2]) }}" class="btn btn-primary">Show</a>
                     <form method="post" action="{{ route('tasks.destroy',['id' => 2]) }}">
                         @csrf
                         @method('DELETE')
