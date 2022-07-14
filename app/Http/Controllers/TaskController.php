@@ -28,12 +28,25 @@ class TaskController extends Controller
 
     //luu du lieu moi
     public function store( Request $request ){
+        // dd( $request->all() );
+        $name = $request->name;
+        $email = $request->email;
+        dd( $name .' - '. $email );
         echo __METHOD__;die();
     }
 
     //cap nhat du lieu
     public function update( $id, Request $request ){
-        echo __METHOD__;die();
+         // dd( $request->all() );
+         $name = $request->name;
+         $email = $request->email;
+         dd( $id .' - '. $name .' - '. $email );
+         echo __METHOD__;die();
+    }
+
+    //xoa du lieu
+    public function destroy( $id ){
+        dd($id);
     }
     
 }

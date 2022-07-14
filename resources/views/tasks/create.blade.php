@@ -11,7 +11,7 @@
             <input id="my-input" class="form-control" type="text" name="email">
         </div>
         <div class="form-group">
-            <button class="btn btn-primary" type="button">Submit</button>
+            <button class="btn btn-primary" type="submit">Submit</button>
         </div>
     </form>
 </div>
