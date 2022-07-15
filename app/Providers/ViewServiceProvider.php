@@ -1,14 +1,13 @@
 <?php
-
+ 
 namespace App\Providers;
-
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\View;
-
+ 
 use App\View\Composers\ProfileComposer;
 use App\View\Composers\MenuComposer;
-
-class AppServiceProvider extends ServiceProvider
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\ServiceProvider;
+ 
+class ViewServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
@@ -19,7 +18,7 @@ class AppServiceProvider extends ServiceProvider
     {
         //
     }
-
+ 
     /**
      * Bootstrap any application services.
      *
@@ -27,7 +26,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer('layouts.admin.includes.sidebar_menu', MenuComposer::class);
+        // // Using class based composers...
         View::composer('*', ProfileComposer::class);
+ 
+        // // Using closure based composers...
+        // View::composer('dashboard', function ($view) {
+        //     //
+        // });
     }
 }

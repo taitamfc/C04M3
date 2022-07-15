@@ -20,7 +20,8 @@ class TaskController extends Controller
             // ]
         ];
         $params = [
-           'items' => $items 
+           'items' => $items,
+           'admin_name' => 'Manager' 
         ];
         return view('tasks.index',$params);
         
