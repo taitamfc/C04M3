@@ -17,7 +17,7 @@ use App\Http\Controllers\AdminController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts.admin.master');
 });
 
 
@@ -95,7 +95,7 @@ Route::resource('photos',CustomerController::class);
         DELETE  => /{id}         => destroy     => photos.destroy
 */
 
-Route::group(['prefix' => 'tasks',  'middleware' => 'auth'], function(){
+Route::group(['prefix' => 'tasks'], function(){
     // trang danhs sach
     Route::get('/' , [TaskController::class,'index'] )->name('tasks.index');
 

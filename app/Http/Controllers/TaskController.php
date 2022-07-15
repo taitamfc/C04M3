@@ -8,7 +8,32 @@ class TaskController extends Controller
 {
     //lay tat ca du lieu
     public function index(){
-        return view('tasks.index');
+
+        $items = [
+            // [
+            //     'name' => 'NVA',
+            //     'age' => '18',
+            // ],
+            // [
+            //     'name' => 'NVB',
+            //     'age' => '19',
+            // ]
+        ];
+        $params = [
+           'items' => $items 
+        ];
+        return view('tasks.index',$params);
+        
+
+        /*
+        return view('tasks.index')->with('name' , 'thuan')->with('age' , '18');
+        */
+
+        /*
+        $name   = 'Nguyen Van A';
+        $age    = 18;
+        return view ('tasks.index', compact('name','age'));
+        */
     }
 
     //trang tao moi

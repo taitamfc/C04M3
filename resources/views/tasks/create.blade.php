@@ -1,17 +1,26 @@
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<div class="container">
-    <form method="post" action="{{ route('tasks.store') }}">
-        @csrf
-        <div class="form-group">
-            <label for="my-input">Name</label>
-            <input id="my-input" class="form-control" type="text" name="name">
-        </div>
-        <div class="form-group">
-            <label for="my-input">Email</label>
-            <input id="my-input" class="form-control" type="text" name="email">
-        </div>
-        <div class="form-group">
-            <button class="btn btn-primary" type="submit">Submit</button>
-        </div>
-    </form>
+@extends('layouts.admin.master')
+@section('content')
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        DataTable Example
+    </div>
+    <div class="card-body">
+        <form method="post" action="{{ route('tasks.store') }}">
+            @csrf
+            <div class="form-group">
+                <label for="my-input">Name</label>
+                <input id="my-input" class="form-control" type="text" name="name">
+            </div>
+            <div class="form-group">
+                <label for="my-input">Email</label>
+                <input id="my-input" class="form-control" type="text" name="email">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
 </div>
+
+@endsection
