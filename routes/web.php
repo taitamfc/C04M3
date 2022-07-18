@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\StudentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -133,3 +134,5 @@ Route::get('/khu-vuc-nuoc-ngot/{age?}',function($age = 0){
 })->name('uong-nuoc-ngot');
 
 Route::get('admin',AdminController::class);
+
+Route::resource('students',StudentController::class);
