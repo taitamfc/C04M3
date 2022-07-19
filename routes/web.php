@@ -6,6 +6,9 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\StudentController;
+use App\Models\Type;
+use App\Models\Book;
+use App\Models\Student;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -136,3 +139,21 @@ Route::get('/khu-vuc-nuoc-ngot/{age?}',function($age = 0){
 Route::get('admin',AdminController::class);
 
 Route::resource('students',StudentController::class);
+
+Route::get('/hasMany',function(){
+    //tim record co khoa chinh = 1
+    $item = Type::find(1);
+    dd($item->books->toArray());
+});
+Route::get('/belongsTo',function(){
+    //first => fetch(); Oblect
+    //get => fetchAll(); Array
+    // $item = Book::find(2);
+    $item = Book::where('id','=',2)->first();
+    dd($item->type->toArray());
+});
+
+Route::get('/belongsToMany',function(){
+    $item = Student::find(1);
+    dd($item->borrow_books->toArray());
+});
