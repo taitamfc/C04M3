@@ -6,6 +6,7 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\BookController;
 use App\Models\Type;
 use App\Models\Book;
 use App\Models\Student;
@@ -139,6 +140,7 @@ Route::get('/khu-vuc-nuoc-ngot/{age?}',function($age = 0){
 Route::get('admin',AdminController::class);
 
 Route::resource('students',StudentController::class);
+Route::resource('books',BookController::class);
 
 Route::get('/hasMany',function(){
     //tim record co khoa chinh = 1
