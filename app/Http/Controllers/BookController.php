@@ -12,13 +12,41 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        try {
-            throw new BookException();
-        } catch (BookException $e) {
-            // dd($e->getMessage());
-        }
+
+       
+
+        //Lưu sesstion có tên là cart
+        $cart = ['Rau'];
+        $request->session()->put('cart', $cart);
+        $request->session()->push('cart', 'Hoa');
+        $request->session()->push('cart', 'Ca');
+
+        //dat lai gia tri
+        //$request->session()->put('cart', []);
+
+        //Lấy session có tên là cart
+        $cart = $request->session()->get('cart');
+
+        //Xoa
+        $request->session()->forget('cart');
+
+        //Set
+
+        //Lấy session có tên là cart
+        $cart = $request->session()->get('cart');
+
+        //xoa tat ca
+        $request->session()->flush();
+
+        dd($cart);
+
+        // try {
+        //     throw new BookException();
+        // } catch (BookException $e) {
+        //     // dd($e->getMessage());
+        // }
         $params = [];
         return view('books.index',$params);
     }
@@ -30,6 +58,21 @@ class BookController extends Controller
      */
     public function create()
     {
+
+        //them
+        session(['cart' => '123']);
+
+        //sua
+        session()->put('cart', []);
+
+        //xem
+        $cart = session('cart');
+
+        //xoa
+        session()->forget('cart');
+
+        dd($cart);
+
         $params = [];
         return view('books.create',$params);
     }
