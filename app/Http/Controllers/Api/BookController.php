@@ -43,7 +43,7 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**
@@ -77,7 +77,7 @@ class BookController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        dd($request->all());
     }
 
     /**
@@ -88,6 +88,6 @@ class BookController extends Controller
      */
     public function destroy($id)
     {
-        //
+        dd($id);
     }
 }
