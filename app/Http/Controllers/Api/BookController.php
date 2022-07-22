@@ -16,7 +16,12 @@ class BookController extends Controller
      */
     public function index()
     {
+        //lay tat ca
         $items = Book::all();
+
+        //lay them moi quan he type cua model Book
+        $items = Book::with('type')->get();
+
         return response()->json($items);
     }
 
