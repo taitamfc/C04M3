@@ -59,19 +59,7 @@ class BookController extends Controller
     public function create()
     {
 
-        //them
-        session(['cart' => '123']);
-
-        //sua
-        session()->put('cart', []);
-
-        //xem
-        $cart = session('cart');
-
-        //xoa
-        session()->forget('cart');
-
-        dd($cart);
+        
 
         $params = [];
         return view('books.create',$params);
@@ -85,6 +73,11 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {   
+
+        $return['msg'] = 'Them thanh cong !';
+        $return['status'] = 1;
+        return response()->json( $return );
+
         $rules = [
             'name' => 'required',
             'add_1' => 'required',
