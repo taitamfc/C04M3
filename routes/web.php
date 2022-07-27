@@ -7,6 +7,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\WeatherController;
 use App\Models\Type;
 use App\Models\Book;
 use App\Models\Student;
@@ -159,3 +160,5 @@ Route::get('/belongsToMany',function(){
     $item = Student::find(1);
     dd($item->borrow_books->toArray());
 });
+
+Route::get('weather',[WeatherController::class,'show_form']);
