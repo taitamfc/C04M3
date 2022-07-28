@@ -10,7 +10,13 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\WeatherController;
 use App\Models\Type;
 use App\Models\Book;
+use App\Models\User;
 use App\Models\Student;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Gate;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -162,3 +168,65 @@ Route::get('/belongsToMany',function(){
 });
 
 Route::get('weather',[WeatherController::class,'show_form']);
+
+Route::get('/testLang',function(){
+    $cr_lang = session('cr_lang');
+    App::setlocale($cr_lang);
+    echo __('messages.hello');
+});
+
+Route::get('/changeLang/{lang}', function($lang){
+    session(['cr_lang'=>$lang]);
+    return redirect('/testLang');
+});
+
+
+Route::get('admin',function(){
+
+})->name('admin');
+
+
+Route::get('login',function(Request $request){
+
+    
+    $credentials = [
+        'email' => 'admin@gmail.com',
+        'password' => '123456'
+    ];
+
+    if (Auth::attempt($credentials)) {
+        $request->session()->regenerate();
+
+        return redirect('xem_danh_sach');
+    }
+
+})->name('login');
+
+
+Route::get('register',function(){
+    // $user = new User();
+    // $user->name     = 'admin';
+    // $user->email    = 'admin@gmail.com';
+    // $user->password = Hash::make(123456);
+    // $user->save();
+
+    // dd($user);
+});
+
+Route::get('xem_danh_sach',function(){
+    $user = Auth::user();
+    if ( Gate::forUser($user)->allows('xem_danh_sach') ) {
+        echo 'Trang danh sach';
+    }else{
+        abort(403);
+    }
+});
+
+Route::get('xoa_tai_nguyen',function(){
+    $user = Auth::user();
+    if ( Gate::forUser($user)->allows('delete') ) {
+        echo 'Trang xoa tai nguyen';
+    }else{
+        abort(403);
+    }
+});
